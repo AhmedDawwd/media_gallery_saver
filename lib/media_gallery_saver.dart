@@ -11,61 +11,61 @@ class MediaGallerySaver {
     return MediaGallerySaverPlatform.instance.getPlatformVersion();
   }
 
-  Future<List<String>> getExternalStorageDirectories() async {
+  static Future<List<String>> getExternalStorageDirectories() async {
     return await MediaGallerySaverPlatform.instance
         .getExternalStorageDirectories();
   }
 
-  Future<String> getExternalStoragePublicDirectory(
+  static Future<String> getExternalStoragePublicDirectory(
       {required Environment environment}) async {
     return await MediaGallerySaverPlatform.instance
-        .getExternalStoragePublicDirectory(getEnvironmentDir(environment));
+        .getExternalStoragePublicDirectory(_getEnvironmentDir(environment));
   }
 
-  Future<String> getExternalStorageDefaultDirectoriesPath(
+  static Future<String> getExternalStorageDefaultDirectoriesPath(
       {required Environment environment}) async {
     return await MediaGallerySaverPlatform.instance
         .getExternalStorageDefaultDirectoriesPath(
-            getEnvironmentDir(environment));
+            _getEnvironmentDir(environment));
   }
 
-  Future<bool?> createAlbum({
+  static Future<bool?> createAlbum({
     required String albumName,
     required Environment environment,
   }) async {
     return await MediaGallerySaverPlatform.instance.createAlbum(
-        albumName: albumName, albumType: getEnvironmentDir(environment));
+        albumName: albumName, albumType: _getEnvironmentDir(environment));
   }
 
-  Future<String?> getPathAlbum({
+  static Future<String?> getPathAlbum({
     required String albumName,
     required Environment environment,
   }) async {
     return await MediaGallerySaverPlatform.instance.getPathAlbum(
-        albumName: albumName, albumType: getEnvironmentDir(environment));
+        albumName: albumName, albumType: _getEnvironmentDir(environment));
   }
 
-  Future<String?> getPathFileInAlbum(
+  static Future<String?> getPathFileInAlbum(
       {required String albumName,
       required Environment environment,
       required String fileName}) async {
     return await MediaGallerySaverPlatform.instance.getPathFileInAlbum(
         albumName: albumName,
-        albumType: getEnvironmentDir(environment),
+        albumType: _getEnvironmentDir(environment),
         fileName: fileName);
   }
 
-  Future<bool?> saveAlbum(
+  static Future<bool?> saveAlbum(
       {required String albumName,
       required Environment environment,
       required List<String> filePath}) async {
     return await MediaGallerySaverPlatform.instance.saveAlbum(
         albumName: albumName,
         filePaths: filePath,
-        albumType: getEnvironmentDir(environment));
+        albumType: _getEnvironmentDir(environment));
   }
 
-  saveVideo(
+  static Future<bool?> saveVideo(
     String path, {
     String? albumName,
     required Environment environment,
@@ -73,11 +73,11 @@ class MediaGallerySaver {
   }) async {
     return await MediaGallerySaverPlatform.instance.saveVideo(path,
         albumName: albumName,
-        albumType: getEnvironmentDir(environment),
+        albumType: _getEnvironmentDir(environment),
         headers: headers);
   }
 
-  Future<bool?> saveImage(
+  static Future<bool?> saveImage(
     String path, {
     String? albumName,
     required Environment environment,
@@ -85,11 +85,11 @@ class MediaGallerySaver {
   }) async {
     return await MediaGallerySaverPlatform.instance.saveImage(path,
         albumName: albumName,
-        albumType: getEnvironmentDir(environment),
+        albumType: _getEnvironmentDir(environment),
         headers: headers);
   }
 
-  String getEnvironmentDir(Environment environment) {
+  static String _getEnvironmentDir(Environment environment) {
     switch (environment) {
       case Environment.DIRECTORY_DCIM:
         return dirDCIM;
